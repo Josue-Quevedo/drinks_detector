@@ -28,7 +28,7 @@ CLIP takes an image and analize what kind of drink are in the photo, a photo of 
 It print the prediction and a scale of percent of that prediction
 
 
-Why this is powerful
+-Why this is powerful
 
 CLIP understands concepts, not fixed labels.
 
