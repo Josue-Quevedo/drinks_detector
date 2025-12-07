@@ -1,0 +1,39 @@
+Beverage Classifier using CLIP
+Soda – Orange Juice – Water Classification (No Training Required)
+
+This project uses CLIP (Contrastive Language–Image Pretraining) from HuggingFace to classify an input image into one of three beverage categories:
+
+-Soda
+-Orange Juice
+-Water
+
+CLIP allows classification without training, simply by comparing the image to text descriptions. This makes the project extremely lightweight and plug-and-play.
+
+First we need to install the dependences, you can put this command: "pip install -r requirements.txt" and it will read the txt file to install the dependences 
+
+If you want to install manually:
+
+pip install torch torchvision torchaudio
+pip install pillow
+pip install transformers
+
+To classify an image, run:
+
+python classify_clip.py path_file.jpg (name of your image to process)
+
+How It Works
+
+CLIP takes an image and analize what kind of drink are in the photo, a photo of a soda, juice or water
+
+It print the prediction and a scale of percent of that prediction
+
+
+Why this is powerful
+
+CLIP understands concepts, not fixed labels.
+
+It doesn't need training — it already understands the world.
+
+Works excellent for beverages, containers, textures, etc.
+
+This is how we use "trasnfer learning" or non superviced learning.
