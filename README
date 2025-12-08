@@ -1,39 +1,87 @@
+Universidad Tecnológica Metropolitana de Aguascalientes
+
+By: Ulises Josué Quevedo Hernández
+Teacher: Pablo Palacios Aranda
+Subject: Programming for AI
+
 Beverage Classifier using CLIP
-Soda – Orange Juice – Water Classification (No Training Required)
+Soda – Orange Juice – Water Classification (Zero-Shot, No Training Required)
 
-This project uses CLIP (Contrastive Language–Image Pretraining) from HuggingFace to classify an input image into one of three beverage categories:
-
+This project uses CLIP (Contrastive Language–Image Pretraining) to classify images into one of three beverage categories:
 -Soda
 -Orange Juice
 -Water
 
-CLIP allows classification without training, simply by comparing the image to text descriptions. This makes the project extremely lightweight and plug-and-play.
+CLIP performs zero-shot classification by comparing the input image with short text descriptions. No training or dataset preparation is required.
 
-First we need to install the dependences, you can put this command: "pip install -r requirements.txt" and it will read the txt file to install the dependences 
+Installation:
 
-If you want to install manually:
+Install all dependencies using:
+
+pip install -r requirements.txt
+
+Or install manually:
 
 pip install torch torchvision torchaudio
 pip install pillow
 pip install transformers
 
-To classify an image, run:
+Project structure
+CLASIFICADOR DE IMAGENES/
+│
+├── classifier.py        # Main script (evaluates 3 example images and prints average confidence)
+├── requirements.txt     # A file that shows the requirements to the project
+└── examples/            # Put the test images here but check in the code that the path are the correct name
+      ├── soda1.jpg
+      ├── juice1.jpg
+      └── water1.jpg
 
-python classify_clip.py path_file.jpg (name of your image to process)
+How to run, new version
 
-How It Works
-
-CLIP takes an image and analize what kind of drink are in the photo, a photo of a soda, juice or water
-
-It print the prediction and a scale of percent of that prediction
+Run the script without arguments (current version evaluates three images and reports each confidence plus the average):
+python classifier.py
 
 
--Why this is powerful
+The script expects three images at:
 
-CLIP understands concepts, not fixed labels.
+examples/soda1.jpg
+examples/juice1.jpg
+examples/water1.jpg
 
-It doesn't need training — it already understands the world.
 
-Works excellent for beverages, containers, textures, etc.
+Output example:
 
-This is how we use "trasnfer learning" or non superviced learning.
+[examples/soda1.jpg] -> Prediction: cola soda; Confidence: 94.12%
+[examples/juice1.jpg] -> Prediction: orange juice; Confidence: 82.77%
+[examples/water1.jpg] -> Prediction: bottle of water; Confidence: 91.54%
+
+=== Results Summary ===
+Image 1 Accuracy: 94.12%
+Image 2 Accuracy: 82.77%
+Image 3 Accuracy: 91.54%
+
+Final Average Accuracy: 89.48%
+
+How it works:
+
+CLIP converts the image and several text prompts (e.g., "cola soda", "orange juice", "bottle of water") into embeddings.
+It computes similarity between the image embedding and each text embedding.
+The highest similarity chooses the predicted label and its confidence.
+The script reports each image confidence and the average of the three.
+
+If you want to change behavior
+1) Use different example image files
+
+Replace examples/soda1.jpg, examples/juice1.jpg, and examples/water1.jpg with your differents images (keep names or edit the list in the script).
+
+2) Process a different set of images
+
+Open classifier.py and edit the image_list variable to include the paths you want:
+
+example: 
+
+image_list = [
+    "examples/my_soda.jpg",
+    "examples/my_juice.jpg",
+    "examples/my_water.jpg",
+]
